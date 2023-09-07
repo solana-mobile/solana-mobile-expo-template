@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build": "npx eas build --profile development --platform android --local"
   },
   "dependencies": {
     "@solana-mobile/mobile-wallet-adapter-protocol": "^2.0.1",
