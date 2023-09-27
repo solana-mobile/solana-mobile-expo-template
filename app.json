@@ -22,15 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.michaelsulistio.solanamobileexpotemplate"
+      "package": "com.solanamobile.solanamobileexpotemplate"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "11520d3a-00da-4cb9-afe7-944bf204713d"
-      }
     }
   }
 }
