@@ -50,7 +50,7 @@ Choose your project name then navigate into the directory.
 
 ### Build and run the app
 
-Follow the **["Running the app"](/react-native/expo#running-the-app)** section in the Expo Setup guide to launch the template as a custom development build.
+Follow the **["Running the app"](https://docs.solanamobile.com/react-native/expo#running-the-app)** section in the Expo Setup guide to launch the template as a custom development build.
 
 ## Troubleshooting
 
