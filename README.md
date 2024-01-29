@@ -50,9 +50,24 @@ Choose your project name then navigate into the directory.
 
 ### Build and run the app
 
-Follow the **["Running the app"](/react-native/expo#running-the-app)** section in the Expo Setup guide to launch the template as a custom development build.
+Follow the **["Running the app"](https://docs.solanamobile.com/react-native/expo#running-the-app)** section in the Expo Setup guide to launch the template as a custom development build.
 
 ## Troubleshooting
+
+- `Metro has encountered an error: While trying to resolve module @solana-mobile/mobile-wallet-adapter-protocol...`
+
+  - This is an on-going issue when using `npm install` to install the Expo template.
+  - To mitigate, clean your project dependencies and reinstall with `yarn install`
+
+- `The package 'solana-mobile-wallet-adapter-protocol' doesn't seem to be linked. Make sure: ...`
+
+  - Ensure you are _NOT_ using Expo Go to run your app.
+  - You need to be using an [Expo custom development build](https://docs.solanamobile.com/react-native/expo#custom-development-build), rather than Expo Go.
+
+- `failed to connect to...`
+
+  - This is an Expo error that can occur when trying to connect to the dev server on certain Wifi networks.
+  - To fix, try starting the dev server with the `--tunnel` command (`npx expo start --dev-client --tunnel`)
 
 - `Error: crypto.getRandomValues() not supported`
   - This is a polyfill issue when trying to use certain functions from the `@solana/web3.js` in a React Native/Expo environment.
