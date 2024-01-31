@@ -43,7 +43,7 @@ This template is a ready-to-go Expo dApp that offers:
 Initialize the template with:
 
 ```
-npx create-expo-app --template @solana-mobile/solana-mobile-expo-template
+yarn create expo-app --template @solana-mobile/solana-mobile-expo-template
 ```
 
 Choose your project name then navigate into the directory.
