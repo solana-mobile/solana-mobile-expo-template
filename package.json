@@ -10,9 +10,11 @@
     "build": "npx eas build --profile development --platform android --local"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "1.21.0",
     "@solana-mobile/mobile-wallet-adapter-protocol": "^2.0.1",
     "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.0.2",
     "@solana/web3.js": "^1.78.4",
+    "@tanstack/react-query": "^5.24.1",
     "buffer": "^6.0.3",
     "expo": "~50.0.8",
     "expo-crypto": "~12.8.1",
@@ -21,11 +23,11 @@
     "react": "18.2.0",
     "react-native": "0.73.4",
     "react-native-get-random-values": "~1.8.0",
-    "react-native-safe-area-context": "4.8.2",
-    "@react-native-async-storage/async-storage": "1.21.0"
+    "react-native-safe-area-context": "4.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@tanstack/eslint-plugin-query": "^5.20.1",
     "@types/react": "~18.2.14",
     "typescript": "^5.1.3"
   }

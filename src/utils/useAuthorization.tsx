@@ -10,6 +10,7 @@ import {
   ReauthorizeAPI,
 } from "@solana-mobile/mobile-wallet-adapter-protocol";
 import { toUint8Array } from "js-base64";
+import { useQuery } from "@tanstack/react-query";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import React from "react";
 
@@ -93,6 +94,22 @@ function cacheReviver(key: string, value: any) {
 }
 
 const STORAGE_KEY = "app-cache";
+
+async function fetchAuthorization(): Promise<WalletAuthorization | null> {
+  const cacheFetchResult = await AsyncStorage.getItem(STORAGE_KEY);
+  if (cacheFetchResult !== null) {
+    // Return prior authorization, if found.
+    return JSON.parse(cacheFetchResult, cacheReviver);
+  }
+  return cacheFetchResult;
+}
+
+async function useAuthorization() {
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ["wallet-authorization"],
+    queryFn: () => fetchAuthorization,
+  });
+}
 
 function AuthorizationProvider(props: {
   appIdentity: Readonly<{
@@ -209,9 +226,6 @@ function AuthorizationProvider(props: {
   );
 }
 
-const useAuthorization = () => React.useContext(AuthorizationContext);
+// const useAuthorization = () => React.useContext(AuthorizationContext);
 
 export { AuthorizationProvider, useAuthorization };
-function useQuery() {
-  throw new Error("Function not implemented.");
-}
