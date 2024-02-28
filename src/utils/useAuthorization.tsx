@@ -14,8 +14,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { CHAIN_IDENTIFIER } from "../../App";
 
-const RPC_ENDPOINT = "devnet";
-
 export type Account = Readonly<{
   address: Base64EncodedAddress;
   label?: string;
