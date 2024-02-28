@@ -1,7 +1,7 @@
 import { useConnection } from "./ConnectionProvider";
 import React, { useState, useCallback } from "react";
 import { Button } from "react-native";
-import { Account } from "./AuthorizationProvider";
+import { Account } from "./utils/useAuthorization";
 import { alertAndLog } from "./utils/alertAndLog";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 

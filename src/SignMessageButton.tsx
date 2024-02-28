@@ -6,7 +6,7 @@ import {
   Web3MobileWallet,
 } from "@solana-mobile/mobile-wallet-adapter-protocol-web3js";
 
-import { useAuthorization } from "./AuthorizationProvider";
+import { useAuthorization } from "./utils/useAuthorization";
 import { alertAndLog } from "./utils/alertAndLog";
 
 export default function SignMessageButton() {

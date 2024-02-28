@@ -7,7 +7,7 @@ import {
 } from "@solana-mobile/mobile-wallet-adapter-protocol-web3js";
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
 
-import { useAuthorization } from "./AuthorizationProvider";
+import { useAuthorization } from "./utils/useAuthorization";
 import { useConnection } from "./ConnectionProvider";
 import { alertAndLog } from "./utils/alertAndLog";
 

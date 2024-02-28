@@ -6,15 +6,21 @@ global.Buffer = Buffer;
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { CLUSTER, ConnectionProvider } from "./src/ConnectionProvider";
+import { ConnectionProvider } from "./src/ConnectionProvider";
 import { clusterApiUrl } from "@solana/web3.js";
-import { AuthorizationProvider } from "./src/AuthorizationProvider";
 import MainScreen from "./src/MainScreen";
 import { Header } from "./src/Header";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const APP_IDENTITY = {
   name: "Expo Starter Template",
 };
+
+export const CHAIN = "solana";
+export const CLUSTER = "devnet";
+export const CHAIN_IDENTIFIER = `${CHAIN}:${CLUSTER}`;
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
@@ -22,12 +28,12 @@ export default function App() {
       config={{ commitment: "processed" }}
       endpoint={clusterApiUrl(CLUSTER)}
     >
-      <AuthorizationProvider>
+      <QueryClientProvider client={queryClient}>
         <SafeAreaView style={styles.shell}>
           <Header />
           <MainScreen />
         </SafeAreaView>
-      </AuthorizationProvider>
+      </QueryClientProvider>
     </ConnectionProvider>
   );
 }
