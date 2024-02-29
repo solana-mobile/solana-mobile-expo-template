@@ -13,6 +13,7 @@
     "@react-native-async-storage/async-storage": "1.21.0",
     "@solana-mobile/mobile-wallet-adapter-protocol": "^2.0.1",
     "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.0.2",
+    "@solana/spl-token": "^0.4.1",
     "@solana/web3.js": "^1.78.4",
     "@tanstack/react-query": "^5.24.1",
     "buffer": "^6.0.3",

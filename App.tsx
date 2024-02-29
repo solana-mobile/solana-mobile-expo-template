@@ -11,6 +11,8 @@ import { clusterApiUrl } from "@solana/web3.js";
 import MainScreen from "./src/MainScreen";
 import { Header } from "./src/Header";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { PaperProvider } from "react-native-paper";
+import { TopBar } from "./src/components/top-bar/top-bar-feature";
 
 export const APP_IDENTITY = {
   name: "Expo Starter Template",
@@ -30,8 +32,10 @@ export default function App() {
     >
       <QueryClientProvider client={queryClient}>
         <SafeAreaView style={styles.shell}>
-          <Header />
-          <MainScreen />
+          <PaperProvider>
+            <TopBar />
+            <MainScreen />
+          </PaperProvider>
         </SafeAreaView>
       </QueryClientProvider>
     </ConnectionProvider>

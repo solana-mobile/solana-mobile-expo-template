@@ -7,12 +7,14 @@ import {
   AuthToken,
   Base64EncodedAddress,
   DeauthorizeAPI,
-  ReauthorizeAPI,
 } from "@solana-mobile/mobile-wallet-adapter-protocol";
 import { toUint8Array } from "js-base64";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
-import { CHAIN_IDENTIFIER } from "../../App";
+
+const CHAIN = "solana";
+const CLUSTER = "devnet";
+const CHAIN_IDENTIFIER = `${CHAIN}:${CLUSTER}`;
 
 export type Account = Readonly<{
   address: Base64EncodedAddress;
@@ -123,7 +125,7 @@ export function useAuthorization() {
     [authorization]
   );
   const authorizeSession = useCallback(
-    async (wallet: AuthorizeAPI & ReauthorizeAPI) => {
+    async (wallet: AuthorizeAPI) => {
       const authorizationResult = await wallet.authorize({
         identity: APP_IDENTITY,
         chain: CHAIN_IDENTIFIER,
