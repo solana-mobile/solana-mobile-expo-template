@@ -13,6 +13,8 @@ import { Header } from "./src/Header";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PaperProvider } from "react-native-paper";
 import { TopBar } from "./src/components/top-bar/top-bar-feature";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export const APP_IDENTITY = {
   name: "Expo Starter Template",
@@ -23,6 +25,7 @@ export const CLUSTER = "devnet";
 export const CHAIN_IDENTIFIER = `${CHAIN}:${CLUSTER}`;
 
 const queryClient = new QueryClient();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -33,8 +36,15 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <SafeAreaView style={styles.shell}>
           <PaperProvider>
-            <TopBar />
-            <MainScreen />
+            <NavigationContainer>
+              <Stack.Navigator
+                screenOptions={{
+                  header: () => <TopBar />,
+                }}
+              >
+                <Stack.Screen name="Main" component={MainScreen} />
+              </Stack.Navigator>
+            </NavigationContainer>
           </PaperProvider>
         </SafeAreaView>
       </QueryClientProvider>
