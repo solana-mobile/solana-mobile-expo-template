@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import { Section } from "./Section";
-import ConnectButton from "./ConnectButton";
-import AccountInfo from "./AccountInfo";
-import { useAuthorization, Account } from "./utils/useAuthorization";
-import { useConnection } from "./ConnectionProvider";
-import SignMessageButton from "./SignMessageButton";
-import SignTransactionButton from "./SignTransactionButton";
+import { Section } from "../Section";
+import ConnectButton from "../ConnectButton";
+import AccountInfo from "../AccountInfo";
+import { useAuthorization, Account } from "../utils/useAuthorization";
+import { useConnection } from "../ConnectionProvider";
+import SignMessageButton from "../SignMessageButton";
+import SignTransactionButton from "../SignTransactionButton";
 
-export default function MainScreen() {
+export function HomeScreen() {
   const { connection } = useConnection();
   const { selectedAccount } = useAuthorization();
   const [balance, setBalance] = useState<number | null>(null);

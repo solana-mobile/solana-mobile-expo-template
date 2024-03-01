@@ -1,18 +1,27 @@
-import { Pressable, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
 import { TopBarWalletButton } from "./top-bar-ui";
+import { useNavigation } from "@react-navigation/core";
 
 export function TopBar() {
+  const navigation = useNavigation();
   return (
-    <Appbar.Header mode="medium">
-      <Appbar.Content title="Solana Expo Template" />
-      {/* <Appbar.Action icon="wallet" onPress={() => {}} /> */}
+    <Appbar.Header mode="small" style={styles.topBar}>
+      <TopBarWalletButton />
       <Appbar.Action
         icon="cog-outline"
         mode="contained-tonal"
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate("Settings");
+        }}
       />
-      <TopBarWalletButton />
     </Appbar.Header>
   );
 }
+
+const styles = StyleSheet.create({
+  topBar: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+});
