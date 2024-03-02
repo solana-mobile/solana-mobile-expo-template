@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Divider, Text } from "react-native-paper";
 
 import { Section } from "../Section";
-import ConnectButton from "../ConnectButton";
-import AccountInfo from "../AccountInfo";
 import { useAuthorization, Account } from "../utils/useAuthorization";
 import { useConnection } from "../ConnectionProvider";
-import SignMessageButton from "../SignMessageButton";
-import SignTransactionButton from "../SignTransactionButton";
+import { AccountDetailFeature } from "../components/account/account-detail-feature";
 
 export function HomeScreen() {
   const { connection } = useConnection();
@@ -34,45 +32,43 @@ export function HomeScreen() {
     fetchAndUpdateBalance(selectedAccount);
   }, [fetchAndUpdateBalance, selectedAccount]);
 
-  return (
-    <>
-      <View style={styles.mainContainer}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {selectedAccount ? (
-            <>
-              <Section title="Sign a transaction">
-                <SignTransactionButton />
-              </Section>
+  console.log("Selected Acccount");
+  console.log(selectedAccount);
 
-              <Section title="Sign a message">
-                <SignMessageButton />
-              </Section>
-            </>
-          ) : null}
-        </ScrollView>
-        {selectedAccount ? (
-          <AccountInfo
-            selectedAccount={selectedAccount}
-            balance={balance}
-            fetchAndUpdateBalance={fetchAndUpdateBalance}
+  return (
+    <View style={styles.mainContainer}>
+      <Text
+        style={{ fontWeight: "bold", marginBottom: 12 }}
+        variant="displaySmall"
+      >
+        Solana Mobile Expo Template
+      </Text>
+      {selectedAccount ? (
+        <AccountDetailFeature />
+      ) : (
+        <>
+          <Section
+            title="Solana SDKs"
+            description="Configured with Solana SDKs like Mobile Wallet Adapter and web3.js."
           />
-        ) : (
-          <ConnectButton title="Connect wallet" />
-        )}
-        <Text>Selected cluster: {connection.rpcEndpoint}</Text>
-      </View>
-    </>
+          <Section
+            title="UI Kit and Navigation"
+            description="Utilizes React Native Paper components and the React Native Navigation library."
+          />
+          <Section
+            title="Get started!"
+            description="Press the Connect button to send an MWA connect request and link your wallet account!"
+          />
+        </>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: "100%",
     padding: 16,
     flex: 1,
-  },
-  scrollContainer: {
-    height: "100%",
   },
   buttonGroup: {
     flexDirection: "column",
