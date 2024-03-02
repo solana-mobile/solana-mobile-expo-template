@@ -16,6 +16,12 @@ export function useMobileWallet() {
     });
   }, [authorizeSession]);
 
+  const signIn = useCallback(async (): Promise<Account> => {
+    return await transact(async (wallet) => {
+      return await authorizeSession(wallet);
+    });
+  }, [authorizeSession]);
+
   const disconnect = useCallback(async (): Promise<void> => {
     await transact(async (wallet) => {
       await deauthorizeSession(wallet);

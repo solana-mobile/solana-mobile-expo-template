@@ -20,11 +20,11 @@ export function AccountDetailFeature() {
         <Text variant="displayLarge">$0.00 SOL</Text>
       </View>
       <View style={styles.accountButtonGroup}>
-        <Button mode="elevated">Airdrop</Button>
-        <Button mode="elevated" style={{ marginLeft: 6 }}>
+        <Button mode="contained">Airdrop</Button>
+        <Button mode="contained" style={{ marginLeft: 6 }}>
           Send
         </Button>
-        <Button mode="elevated" style={{ marginLeft: 6 }}>
+        <Button mode="contained" style={{ marginLeft: 6 }}>
           Receive
         </Button>
       </View>

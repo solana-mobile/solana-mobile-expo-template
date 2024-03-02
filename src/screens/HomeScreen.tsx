@@ -6,6 +6,7 @@ import { Section } from "../Section";
 import { useAuthorization, Account } from "../utils/useAuthorization";
 import { useConnection } from "../ConnectionProvider";
 import { AccountDetailFeature } from "../components/account/account-detail-feature";
+import { SignInFeature } from "../components/sign-in/sign-in-feature";
 
 export function HomeScreen() {
   const { connection } = useConnection();
@@ -57,8 +58,9 @@ export function HomeScreen() {
           />
           <Section
             title="Get started!"
-            description="Press the Connect button to send an MWA connect request and link your wallet account!"
+            description="Connect or Sign in with Solana (SIWS) to link your wallet account."
           />
+          <SignInFeature />
         </>
       )}
     </View>

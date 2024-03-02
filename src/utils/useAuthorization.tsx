@@ -136,6 +136,19 @@ export function useAuthorization() {
     },
     [authorization, handleAuthorizationResult]
   );
+  const authorizeSessionWithSignIn = useCallback(
+    async (wallet: AuthorizeAPI) => {
+      const authorizationResult = await wallet.authorize({
+        identity: APP_IDENTITY,
+        chain: CHAIN_IDENTIFIER,
+        auth_token: authorization?.authToken,
+        sign_in_payload: undefined,
+      });
+      return (await handleAuthorizationResult(authorizationResult))
+        .selectedAccount;
+    },
+    [authorization, handleAuthorizationResult]
+  );
   const deauthorizeSession = useCallback(
     async (wallet: DeauthorizeAPI) => {
       if (authorization?.authToken == null) {
