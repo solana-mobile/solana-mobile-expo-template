@@ -142,7 +142,11 @@ export function useAuthorization() {
         identity: APP_IDENTITY,
         chain: CHAIN_IDENTIFIER,
         auth_token: authorization?.authToken,
-        sign_in_payload: undefined,
+        sign_in_payload: {
+          domain: "yourdomain.com",
+          statement: "Sign into Expo Template App",
+          uri: "https://yourdomain.com",
+        },
       });
       return (await handleAuthorizationResult(authorizationResult))
         .selectedAccount;
@@ -163,6 +167,7 @@ export function useAuthorization() {
     () => ({
       accounts: authorization?.accounts ?? null,
       authorizeSession,
+      authorizeSessionWithSignIn,
       deauthorizeSession,
       selectedAccount: authorization?.selectedAccount ?? null,
       isLoading,

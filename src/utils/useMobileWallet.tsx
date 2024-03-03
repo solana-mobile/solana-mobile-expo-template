@@ -8,7 +8,8 @@ import {
 import { useCallback, useMemo } from "react";
 
 export function useMobileWallet() {
-  const { authorizeSession, deauthorizeSession } = useAuthorization();
+  const { authorizeSessionWithSignIn, authorizeSession, deauthorizeSession } =
+    useAuthorization();
 
   const connect = useCallback(async (): Promise<Account> => {
     return await transact(async (wallet) => {
@@ -18,7 +19,7 @@ export function useMobileWallet() {
 
   const signIn = useCallback(async (): Promise<Account> => {
     return await transact(async (wallet) => {
-      return await authorizeSession(wallet);
+      return await authorizeSessionWithSignIn(wallet);
     });
   }, [authorizeSession]);
 
@@ -60,6 +61,7 @@ export function useMobileWallet() {
   return useMemo(
     () => ({
       connect,
+      signIn,
       disconnect,
       signAndSendTransaction,
       signMessage,

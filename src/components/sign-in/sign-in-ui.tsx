@@ -39,7 +39,7 @@ export function ConnectButton() {
 
 export function SignInButton() {
   const { authorizeSession } = useAuthorization();
-  const { connect } = useMobileWallet();
+  const { signIn } = useMobileWallet();
   const [signInInProgress, setSignInInProgress] = useState(false);
   const handleConnectPress = useCallback(async () => {
     try {
@@ -47,7 +47,7 @@ export function SignInButton() {
         return;
       }
       setSignInInProgress(true);
-      await connect();
+      await signIn();
     } catch (err: any) {
       alertAndLog(
         "Error during sign in",
