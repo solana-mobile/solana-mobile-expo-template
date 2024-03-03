@@ -33,11 +33,8 @@ export function HomeScreen() {
     fetchAndUpdateBalance(selectedAccount);
   }, [fetchAndUpdateBalance, selectedAccount]);
 
-  console.log("Selected Acccount");
-  console.log(selectedAccount);
-
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.screenContainer}>
       <Text
         style={{ fontWeight: "bold", marginBottom: 12 }}
         variant="displaySmall"
@@ -68,7 +65,7 @@ export function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  screenContainer: {
     padding: 16,
     flex: 1,
   },

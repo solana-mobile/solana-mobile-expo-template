@@ -1,7 +1,5 @@
 // Polyfills
-import "react-native-get-random-values";
-import { Buffer } from "buffer";
-global.Buffer = Buffer;
+import "./src/polyfills";
 
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

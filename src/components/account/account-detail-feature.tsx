@@ -1,39 +1,29 @@
 import { View, StyleSheet } from "react-native";
 import { Button, Text, useTheme } from "react-native-paper";
 import { useAuthorization } from "../../utils/useAuthorization";
+import { AccountBalance, AccountButtonGroup } from "./account-ui";
 
 export function AccountDetailFeature() {
   const { selectedAccount } = useAuthorization();
+
+  if (!selectedAccount) {
+    return null;
+  }
   const theme = useTheme();
 
   return (
     <>
-      <View style={styles.accountBalance}>
-        <Text
-          variant="titleMedium"
-          style={{
-            color: theme.colors.onSurfaceVariant,
-          }}
-        >
-          Current Balance
-        </Text>
-        <Text variant="displayLarge">$0.00 SOL</Text>
-      </View>
-      <View style={styles.accountButtonGroup}>
-        <Button mode="contained">Airdrop</Button>
-        <Button mode="contained" style={{ marginLeft: 6 }}>
-          Send
-        </Button>
-        <Button mode="contained" style={{ marginLeft: 6 }}>
-          Receive
-        </Button>
-      </View>
+      <AccountBalance address={selectedAccount.publicKey} />
+      <AccountButtonGroup address={selectedAccount.publicKey} />
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  accountBalance: {},
+  accountBalance: {
+    marginTop: 12,
+    // alignItems: "center",
+  },
   accountButtonGroup: {
     paddingVertical: 4,
     flexDirection: "row",

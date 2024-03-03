@@ -18,7 +18,7 @@ export function TopBarWalletButton() {
     <Button
       icon="wallet"
       mode="contained-tonal"
-      style={styles.button}
+      style={{ alignSelf: "center" }}
       onPress={selectedAccount ? disconnect : connect}
     >
       {selectedAccount
@@ -40,9 +40,3 @@ export function TopBarSettingsButton() {
     />
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    alignSelf: "center",
-  },
-});
