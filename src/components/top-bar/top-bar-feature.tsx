@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/core";
 
 export function TopBar() {
   const navigation = useNavigation();
+
   return (
     <Appbar.Header mode="small" style={styles.topBar}>
       <TopBarWalletButton />

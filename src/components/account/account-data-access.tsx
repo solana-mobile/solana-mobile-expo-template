@@ -49,6 +49,8 @@ export function useGetTokenAccounts({ address }: { address: PublicKey }) {
           programId: TOKEN_2022_PROGRAM_ID,
         }),
       ]);
+      console.log("Fetching token accounts");
+      console.log(tokenAccounts);
       return [...tokenAccounts.value, ...token2022Accounts.value];
     },
   });

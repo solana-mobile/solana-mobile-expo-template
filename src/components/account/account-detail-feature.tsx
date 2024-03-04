@@ -1,7 +1,11 @@
 import { View, StyleSheet } from "react-native";
 import { Button, Text, useTheme } from "react-native-paper";
 import { useAuthorization } from "../../utils/useAuthorization";
-import { AccountBalance, AccountButtonGroup } from "./account-ui";
+import {
+  AccountBalance,
+  AccountButtonGroup,
+  AccountTokens,
+} from "./account-ui";
 
 export function AccountDetailFeature() {
   const { selectedAccount } = useAuthorization();
@@ -14,7 +18,11 @@ export function AccountDetailFeature() {
   return (
     <>
       <AccountBalance address={selectedAccount.publicKey} />
+
       <AccountButtonGroup address={selectedAccount.publicKey} />
+      <View style={{ marginTop: 24 }}>
+        <AccountTokens address={selectedAccount.publicKey} />
+      </View>
     </>
   );
 }
