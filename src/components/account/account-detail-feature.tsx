@@ -1,5 +1,5 @@
-import { View, StyleSheet } from "react-native";
-import { Button, Text, useTheme } from "react-native-paper";
+import { View } from "react-native";
+import { useTheme } from "react-native-paper";
 import { useAuthorization } from "../../utils/useAuthorization";
 import {
   AccountBalance,
@@ -17,23 +17,13 @@ export function AccountDetailFeature() {
 
   return (
     <>
-      <AccountBalance address={selectedAccount.publicKey} />
-
-      <AccountButtonGroup address={selectedAccount.publicKey} />
-      <View style={{ marginTop: 24 }}>
+      <View style={{ marginTop: 24, alignItems: "center" }}>
+        <AccountBalance address={selectedAccount.publicKey} />
+        <AccountButtonGroup address={selectedAccount.publicKey} />
+      </View>
+      <View style={{ marginTop: 48 }}>
         <AccountTokens address={selectedAccount.publicKey} />
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  accountBalance: {
-    marginTop: 12,
-    // alignItems: "center",
-  },
-  accountButtonGroup: {
-    paddingVertical: 4,
-    flexDirection: "row",
-  },
-});

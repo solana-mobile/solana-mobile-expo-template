@@ -1,37 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Divider, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 
 import { Section } from "../Section";
-import { useAuthorization, Account } from "../utils/useAuthorization";
-import { useConnection } from "../ConnectionProvider";
+import { useAuthorization } from "../utils/useAuthorization";
 import { AccountDetailFeature } from "../components/account/account-detail-feature";
 import { SignInFeature } from "../components/sign-in/sign-in-feature";
 
 export function HomeScreen() {
-  const { connection } = useConnection();
   const { selectedAccount } = useAuthorization();
-  const [balance, setBalance] = useState<number | null>(null);
-
-  console.log("Remounted: ");
-  console.log(selectedAccount);
-
-  const fetchAndUpdateBalance = useCallback(
-    async (account: Account) => {
-      console.log("Fetching balance for: " + account.publicKey);
-      const fetchedBalance = await connection.getBalance(account.publicKey);
-      console.log("Balance fetched: " + fetchedBalance);
-      setBalance(fetchedBalance);
-    },
-    [connection]
-  );
-
-  useEffect(() => {
-    if (!selectedAccount) {
-      return;
-    }
-    fetchAndUpdateBalance(selectedAccount);
-  }, [fetchAndUpdateBalance, selectedAccount]);
 
   return (
     <View style={styles.screenContainer}>
