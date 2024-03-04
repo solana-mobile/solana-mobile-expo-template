@@ -3,6 +3,8 @@ import {
   useGetBalance,
   useGetTokenAccountBalance,
   useGetTokenAccounts,
+  useRequestAirdrop,
+  useTransferSol,
 } from "./account-data-access";
 import { View, StyleSheet, ScrollView } from "react-native";
 import {
@@ -11,9 +13,12 @@ import {
   Button,
   ActivityIndicator,
   DataTable,
+  TextInput,
 } from "react-native-paper";
 import { useState, useMemo } from "react";
 import { ellipsify } from "../../utils/ellipsify";
+import { AppModal } from "../ui/app-modal";
+import { useAuthorization } from "../../utils/useAuthorization";
 
 function lamportsToSol(balance: number) {
   return Math.round((balance / LAMPORTS_PER_SOL) * 100000) / 100000;
@@ -43,18 +48,154 @@ export function AccountBalance({ address }: { address: PublicKey }) {
 }
 
 export function AccountButtonGroup({ address }: { address: PublicKey }) {
+  const requestAirdrop = useRequestAirdrop({ address });
+  const [showAirdropModal, setShowAirdropModal] = useState(false);
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [showSendModal, setShowSendModal] = useState(false);
+
   return (
     <>
       <View style={styles.accountButtonGroup}>
-        <Button mode="contained">Airdrop</Button>
-        <Button mode="contained" style={{ marginLeft: 6 }}>
+        <AirdropRequestModal
+          hide={() => setShowAirdropModal(false)}
+          show={showAirdropModal}
+          address={address}
+        />
+        <TransferSolModal
+          hide={() => setShowSendModal(false)}
+          show={showSendModal}
+          address={address}
+        />
+        <ReceiveSolModal
+          hide={() => setShowReceiveModal(false)}
+          show={showReceiveModal}
+          address={address}
+        />
+        <Button
+          mode="contained"
+          disabled={requestAirdrop.isPending}
+          onPress={() => {
+            setShowAirdropModal(true);
+          }}
+        >
+          Airdrop
+        </Button>
+        <Button
+          mode="contained"
+          onPress={() => setShowSendModal(true)}
+          style={{ marginLeft: 6 }}
+        >
           Send
         </Button>
-        <Button mode="contained" style={{ marginLeft: 6 }}>
+        <Button
+          mode="contained"
+          onPress={() => setShowReceiveModal(true)}
+          style={{ marginLeft: 6 }}
+        >
           Receive
         </Button>
       </View>
     </>
+  );
+}
+
+export function AirdropRequestModal({
+  hide,
+  show,
+  address,
+}: {
+  hide: () => void;
+  show: boolean;
+  address: PublicKey;
+}) {
+  const requestAirdrop = useRequestAirdrop({ address });
+
+  return (
+    <AppModal
+      title="Request Airdrop"
+      hide={hide}
+      show={show}
+      submit={() => {
+        requestAirdrop.mutateAsync(1).catch((err) => console.log(err));
+      }}
+      submitLabel="Request"
+      submitDisabled={requestAirdrop.isPending}
+    >
+      <View style={{ padding: 4 }}>
+        <Text>
+          Request an airdrop of 1 SOL to your connected wallet account.
+        </Text>
+      </View>
+    </AppModal>
+  );
+}
+
+export function TransferSolModal({
+  hide,
+  show,
+  address,
+}: {
+  hide: () => void;
+  show: boolean;
+  address: PublicKey;
+}) {
+  const transferSol = useTransferSol({ address });
+  const [destinationAddress, setDestinationAddress] = useState("");
+  const [amount, setAmount] = useState("");
+  return (
+    <AppModal
+      title="Send SOL"
+      hide={hide}
+      show={show}
+      submit={() => {
+        transferSol
+          .mutateAsync({
+            destination: new PublicKey(destinationAddress),
+            amount: parseFloat(amount),
+          })
+          .then(() => hide());
+      }}
+      submitLabel="Send"
+      submitDisabled={!destinationAddress || !amount}
+    >
+      <View style={{ padding: 20 }}>
+        <TextInput
+          label="Amount (SOL)"
+          value={amount}
+          onChangeText={setAmount}
+          keyboardType="numeric"
+          mode="outlined"
+          style={{ marginBottom: 20 }}
+        />
+        <TextInput
+          label="Destination Address"
+          value={destinationAddress}
+          onChangeText={setDestinationAddress}
+          mode="outlined"
+        />
+      </View>
+    </AppModal>
+  );
+}
+
+export function ReceiveSolModal({
+  hide,
+  show,
+  address,
+}: {
+  hide: () => void;
+  show: boolean;
+  address: PublicKey;
+}) {
+  return (
+    <AppModal title="Receive assets" hide={hide} show={show}>
+      <View style={{ padding: 4 }}>
+        <Text selectable={true} variant="bodyMedium">
+          You can receive assets by sending them to your public key:{"\n\n"}
+          <Text variant="bodyLarge">{address.toBase58()}</Text>
+        </Text>
+      </View>
+    </AppModal>
   );
 }
 
