@@ -66,7 +66,9 @@ export function ClusterProvider({ children }: { children: ReactNode }) {
       clusters: clusters.sort((a, b) => (a.name > b.name ? 1 : -1)),
       setSelectedCluster: (cluster: Cluster) => setSelectedCluster(cluster),
       getExplorerUrl: (path: string) =>
-        `https://explorer.solana.com/${path}${getClusterUrlParam(cluster)}`,
+        `https://explorer.solana.com/${path}${getClusterUrlParam(
+          selectedCluster
+        )}`,
     }),
     [selectedCluster, setSelectedCluster]
   );

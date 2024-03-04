@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Appbar, useTheme } from "react-native-paper";
-import { TopBarWalletButton } from "./top-bar-ui";
+import { TopBarWalletButton, TopBarWalletMenu } from "./top-bar-ui";
 import { useNavigation } from "@react-navigation/core";
 
 export function TopBar() {
@@ -8,7 +8,8 @@ export function TopBar() {
 
   return (
     <Appbar.Header mode="small" style={styles.topBar}>
-      <TopBarWalletButton />
+      <TopBarWalletMenu />
+
       <Appbar.Action
         icon="cog"
         mode="contained-tonal"
