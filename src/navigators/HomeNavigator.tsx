@@ -20,7 +20,6 @@ export function HomeNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         header: () => <TopBar />,
-        navigationBarColors: theme.colors.background,
         tabBarIcon: ({ focused, color, size }) => {
           switch (route.name) {
             case "Home":

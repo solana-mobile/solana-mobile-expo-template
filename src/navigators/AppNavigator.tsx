@@ -17,7 +17,6 @@ import {
   MD3DarkTheme,
   MD3LightTheme,
   adaptNavigationTheme,
-  useTheme,
 } from "react-native-paper";
 
 /**
