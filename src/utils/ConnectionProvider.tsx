@@ -6,7 +6,7 @@ import React, {
   createContext,
   useContext,
 } from "react";
-import { useCluster } from "./components/cluster/cluster-data-access";
+import { useCluster } from "../components/cluster/cluster-data-access";
 
 export interface ConnectionProviderProps {
   children: ReactNode;

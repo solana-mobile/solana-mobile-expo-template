@@ -96,6 +96,7 @@ async function persistAuthorization(
 
 export const APP_IDENTITY = {
   name: "Solana Mobile Expo Template",
+  uri: "https://fakedomain.com",
 };
 
 export function useAuthorization() {

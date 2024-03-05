@@ -11,7 +11,7 @@ import {
 } from "@solana/web3.js";
 import { TOKEN_2022_PROGRAM_ID, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useConnection } from "../../ConnectionProvider";
+import { useConnection } from "../../utils/ConnectionProvider";
 import { useMobileWallet } from "../../utils/useMobileWallet";
 
 export function useGetBalance({ address }: { address: PublicKey }) {
@@ -49,8 +49,6 @@ export function useGetTokenAccounts({ address }: { address: PublicKey }) {
           programId: TOKEN_2022_PROGRAM_ID,
         }),
       ]);
-      console.log("Fetching token accounts");
-      console.log(tokenAccounts);
       return [...tokenAccounts.value, ...token2022Accounts.value];
     },
   });

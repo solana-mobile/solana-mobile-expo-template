@@ -18,7 +18,6 @@ import {
 import { useState, useMemo } from "react";
 import { ellipsify } from "../../utils/ellipsify";
 import { AppModal } from "../ui/app-modal";
-import { useAuthorization } from "../../utils/useAuthorization";
 
 function lamportsToSol(balance: number) {
   return Math.round((balance / LAMPORTS_PER_SOL) * 100000) / 100000;
@@ -247,6 +246,12 @@ export function AccountTokens({ address }: { address: PublicKey }) {
                 <DataTable.Title>Mint</DataTable.Title>
                 <DataTable.Title numeric>Balance</DataTable.Title>
               </DataTable.Header>
+
+              {query.data.length === 0 && (
+                <View style={{ marginTop: 12 }}>
+                  <Text variant="bodyMedium">No token accounts found.</Text>
+                </View>
+              )}
 
               {items?.map(({ account, pubkey }) => (
                 <DataTable.Row key={pubkey.toString()}>
