@@ -1,69 +1,57 @@
 # Solana Mobile Expo Template
 
-This template is a ready-to-go Expo dApp that offers:
+This template is a ready-to-go Android Expo dApp that offers:
 
-- Pre-installed standard SDKs like Mobile Wallet Adapter and `@solana/web3.js`
-- Required polyfills like `react-native-get-random-values` and `Buffer` installed.
-- Simple React UI Components like `ConnectWalletButton`, `RequestAirdropButton`, `SignMessageButton`.
+- Solana libraries: `web3.js`, Mobile Wallet Adapter, and `spl-token`.
+- Required polyfills like `crypto` and `Buffer` configured.
+- Pre-built React UI and re-usable hooks and code patterns like `useMobileWallet`.
 
 **This is only fully functional on Android.**
-
-## Tech Stack
-
-| Library           | Category             | Version | Description                                    |
-| ----------------- | -------------------- | ------- | ---------------------------------------------- |
-| React Native      | Mobile Framework     | v0.73   | The best cross-platform mobile framework       |
-| Expo              | SDK                  | v50     | Allows (optional) Expo modules                 |
-| React             | UI Framework         | v18     | The most popular UI framework in the world     |
-| TypeScript        | Language             | v5      | Static typechecking                            |
-| React Navigation  | Navigation           | v6      | Performant and consistent navigation framework |
-| MobX-State-Tree   | State Management     | v5      | Observable state tree                          |
-| MobX-React-Lite   | React Integration    | v3      | Re-render React performantly                   |
-| Expo Font         | Custom Fonts         | v11     | Import custom fonts                            |
-| Expo Localization | Internationalization | v14     | i18n support (including RTL!)                  |
-| Expo Status Bar   | Status Bar Library   | v1      | Status bar support                             |
-| RN Reanimated     | Animations           | v3      | Beautiful and performant animations            |
-| AsyncStorage      | Persistence          | v1      | State persistence                              |
-| apisauce          | REST client          | v2      | Communicate with back-end                      |
-| Reactotron RN     | Inspector/Debugger   | v3      | JS debugging                                   |
-| Hermes            | JS engine            |         | Fine-tuned JS engine for RN                    |
-| Jest              | Test Runner          | v26     | Standard test runner for JS apps               |
-| Maestro           | Testing Framework    |         | Automate end-to-end UI testing                 |
-| date-fns          | Date library         | v2      | Excellent date library                         |
-| FlashList         | FlatList replacement | v1      | A performant drop-in replacement for FlatList  |
-
-- [Mobile Wallet Adapter](https://github.com/solana-mobile/mobile-wallet-adapter/tree/main/js/packages/mobile-wallet-adapter-protocol) for connecting to wallets and signing transactions/messages
-- [web3.js](https://solana-labs.github.io/solana-web3.js/) for constructing transactions and an RPC `connection` client.
-- rea
 
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/solana-mobile/solana-mobile-dapp-scaffold/assets/18451967/3d83d3dc-ab65-4a2c-881d-8a229f34e392" alt="Scaffold dApp Screenshot 1" width=300 />
+      <img src="./screenshots/screenshot1.png" alt="Scaffold dApp Screenshot 1" width=300 />
     </td>
     <td align="center">
-      <img src="https://github.com/solana-mobile/solana-mobile-dapp-scaffold/assets/18451967/2fd69bd4-834d-45e1-8c7a-f80b5b576c96" alt="Scaffold dApp Screenshot 3" width=300 />
+      <img src="./screenshots/screenshot2.png" alt="Scaffold dApp Screenshot 2" width=300 />
     </td>
     <td align="center">
-      <img src="https://github.com/solana-mobile/solana-mobile-dapp-scaffold/assets/18451967/cdd93c12-d9ff-4739-81af-92da5b90303a" alt="Scaffold dApp Screenshot 2" width=300 />
+      <img src="./screenshots/screenshot3.png" alt="Scaffold dApp Screenshot 3" width=300 />
     </td>
   </tr>
 </table>
 
-<CTAButton label="View on GitHub" to="https://github.com/solana-mobile/solana-mobile-dapp-scaffold" />
+## Tech Stack
 
-## Prerequisites
+| Library               | Category          | Version | Description                                           |
+| --------------------- | ----------------- | ------- | ----------------------------------------------------- |
+| React Native          | Mobile Framework  | v0.73   | The best cross-platform mobile framework              |
+| Expo                  | SDK               | v50     | Allows (optional) Expo modules                        |
+| React                 | UI Framework      | v18     | The most popular UI framework in the world            |
+| Mobile Wallet Adapter | SDK               | v2.0    | Connect and request signing from mobile wallet apps   |
+| Solana web3.js        | SDK               | v1.78   | General Solana library for transactions and RPCs      |
+| spl-token             | SDK               | v0.41   | Library for building with Solana SPL tokens           |
+| React Native Paper    | Component Library | v18     | Production-ready components following Material Design |
+| React Navigation      | Navigation        | v6      | Performant and consistent navigation framework        |
+| React Query           | State management  | v5.24   | Async query management                                |
+| TypeScript            | Language          | v5      | Static typechecking                                   |
+| AsyncStorage          | Persistence       | v1      | State persistence                                     |
 
-- An [Expo](https://expo.dev/) account.
-- React Native and Android Envrionment [setup](https://docs.solanamobile.com/getting-started/development-setup)
-  - An Android device/emulator.
+## Quick Start
+
+### Prerequisites
+
+- A free [Expo](https://expo.dev/) account.
+- An Android device/emulator to test your app
   - Install an MWA compliant wallet app on your device/emulator.
+- If using Expo's cloud service `eas build`, no further setup is required.
+- If building locally:
+  - React Native and Android Envrionment [setup](https://docs.solanamobile.com/getting-started/development-setup)
 
-## Usage
+### Initialize
 
-### Initialization
-
-Initialize the template with:
+Run the CLI command:
 
 ```
 yarn create expo-app --template @solana-mobile/solana-mobile-expo-template
@@ -73,7 +61,7 @@ Choose your project name then navigate into the directory.
 
 ### Build and run the app
 
-Follow the **["Running the app"](https://docs.solanamobile.com/react-native/expo#running-the-app)** section in the Expo Setup guide to launch the template as a custom development build.
+Once your app is initialized, follow the **["Running the app"](https://docs.solanamobile.com/react-native/expo#running-the-app)** guide to launch the template as a custom development build.
 
 ## Troubleshooting
 
