@@ -1,4 +1,4 @@
-import { Button, IconButton, Menu } from "react-native-paper";
+import { Button, IconButton, Menu, useTheme } from "react-native-paper";
 import { Account, useAuthorization } from "../../utils/useAuthorization";
 import { useMobileWallet } from "../../utils/useMobileWallet";
 import { useNavigation } from "@react-navigation/native";

@@ -3,7 +3,6 @@ import { RadioButton, Text } from "react-native-paper";
 import { ClusterPickerRadioButtonGroupRow } from "./cluster-ui";
 
 function clusternetworkToIndex(clusterName: string): number {
-  console.log(clusterName);
   switch (clusterName) {
     case ClusterNetwork.Devnet:
       return 0;

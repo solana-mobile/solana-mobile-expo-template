@@ -8,10 +8,33 @@ This template is a ready-to-go Expo dApp that offers:
 
 **This is only fully functional on Android.**
 
-## Featured Libarires
+## Tech Stack
+
+| Library           | Category             | Version | Description                                    |
+| ----------------- | -------------------- | ------- | ---------------------------------------------- |
+| React Native      | Mobile Framework     | v0.73   | The best cross-platform mobile framework       |
+| Expo              | SDK                  | v50     | Allows (optional) Expo modules                 |
+| React             | UI Framework         | v18     | The most popular UI framework in the world     |
+| TypeScript        | Language             | v5      | Static typechecking                            |
+| React Navigation  | Navigation           | v6      | Performant and consistent navigation framework |
+| MobX-State-Tree   | State Management     | v5      | Observable state tree                          |
+| MobX-React-Lite   | React Integration    | v3      | Re-render React performantly                   |
+| Expo Font         | Custom Fonts         | v11     | Import custom fonts                            |
+| Expo Localization | Internationalization | v14     | i18n support (including RTL!)                  |
+| Expo Status Bar   | Status Bar Library   | v1      | Status bar support                             |
+| RN Reanimated     | Animations           | v3      | Beautiful and performant animations            |
+| AsyncStorage      | Persistence          | v1      | State persistence                              |
+| apisauce          | REST client          | v2      | Communicate with back-end                      |
+| Reactotron RN     | Inspector/Debugger   | v3      | JS debugging                                   |
+| Hermes            | JS engine            |         | Fine-tuned JS engine for RN                    |
+| Jest              | Test Runner          | v26     | Standard test runner for JS apps               |
+| Maestro           | Testing Framework    |         | Automate end-to-end UI testing                 |
+| date-fns          | Date library         | v2      | Excellent date library                         |
+| FlashList         | FlatList replacement | v1      | A performant drop-in replacement for FlatList  |
 
 - [Mobile Wallet Adapter](https://github.com/solana-mobile/mobile-wallet-adapter/tree/main/js/packages/mobile-wallet-adapter-protocol) for connecting to wallets and signing transactions/messages
 - [web3.js](https://solana-labs.github.io/solana-web3.js/) for constructing transactions and an RPC `connection` client.
+- rea
 
 <table>
   <tr>

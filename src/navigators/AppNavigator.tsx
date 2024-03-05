@@ -3,15 +3,22 @@
  * navigation flows of your app.
  */
 import {
-  DarkTheme,
-  DefaultTheme,
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationDefaultTheme,
   NavigationContainer,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { useColorScheme } from "react-native";
+import { Appearance, useColorScheme } from "react-native";
 import * as Screens from "../screens";
 import { HomeNavigator } from "./HomeNavigator";
+import { StatusBar } from "expo-status-bar";
+import {
+  MD3DarkTheme,
+  MD3LightTheme,
+  adaptNavigationTheme,
+  useTheme,
+} from "react-native-paper";
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -60,12 +67,34 @@ export interface NavigationProps
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme();
+  const { LightTheme, DarkTheme } = adaptNavigationTheme({
+    reactNavigationLight: NavigationDefaultTheme,
+    reactNavigationDark: NavigationDarkTheme,
+  });
+
+  const CombinedDefaultTheme = {
+    ...MD3LightTheme,
+    ...LightTheme,
+    colors: {
+      ...MD3LightTheme.colors,
+      ...LightTheme.colors,
+    },
+  };
+  const CombinedDarkTheme = {
+    ...MD3DarkTheme,
+    ...DarkTheme,
+    colors: {
+      ...MD3DarkTheme.colors,
+      ...DarkTheme.colors,
+    },
+  };
 
   return (
     <NavigationContainer
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      theme={colorScheme === "dark" ? CombinedDarkTheme : CombinedDefaultTheme}
       {...props}
     >
+      <StatusBar />
       <AppStack />
     </NavigationContainer>
   );

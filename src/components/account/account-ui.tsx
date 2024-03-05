@@ -25,19 +25,10 @@ function lamportsToSol(balance: number) {
 
 export function AccountBalance({ address }: { address: PublicKey }) {
   const query = useGetBalance({ address });
-  const theme = useTheme();
-
   return (
     <>
       <View style={styles.accountBalance}>
-        <Text
-          variant="titleMedium"
-          style={{
-            color: theme.colors.onSurfaceVariant,
-          }}
-        >
-          Current Balance
-        </Text>
+        <Text variant="titleMedium">Current Balance</Text>
         <Text variant="displayLarge">
           {query.data ? lamportsToSol(query.data) : "..."} SOL
         </Text>

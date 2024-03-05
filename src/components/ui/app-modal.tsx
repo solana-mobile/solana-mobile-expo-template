@@ -1,5 +1,5 @@
 import { ViewStyle, View, StyleSheet } from "react-native";
-import { Modal, Text, Button, Portal } from "react-native-paper";
+import { Modal, Text, Button, Portal, useTheme } from "react-native-paper";
 
 interface AppModalProps {
   children: React.ReactNode;
@@ -21,14 +21,18 @@ export function AppModal({
   submitDisabled,
   submitLabel = "Save", // Defaulting submitLabel to "Save" here
 }: AppModalProps) {
+  const theme = useTheme();
   return (
     <Portal>
       <Modal
         visible={show}
         onDismiss={hide}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={[
+          styles.container,
+          { backgroundColor: theme.colors.elevation.level4 },
+        ]}
       >
-        <View style={styles.box}>
+        <View>
           <Text style={styles.title}>{title}</Text>
           {children}
           <View style={styles.action}>
@@ -56,14 +60,10 @@ export function AppModal({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     padding: 20,
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 5,
-  },
-  box: {
-    // Adjust layout with margin or padding in your actual styles.
   },
   title: {
     fontSize: 20,
