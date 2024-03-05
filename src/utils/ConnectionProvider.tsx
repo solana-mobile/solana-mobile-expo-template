@@ -6,23 +6,22 @@ import React, {
   createContext,
   useContext,
 } from "react";
-
-export const CLUSTER = "devnet";
+import { useCluster } from "../components/cluster/cluster-data-access";
 
 export interface ConnectionProviderProps {
   children: ReactNode;
-  endpoint: string;
   config?: ConnectionConfig;
 }
 
 export const ConnectionProvider: FC<ConnectionProviderProps> = ({
   children,
-  endpoint,
   config = { commitment: "confirmed" },
 }) => {
+  const { selectedCluster } = useCluster();
+
   const connection = useMemo(
-    () => new Connection(endpoint, config),
-    [endpoint, config]
+    () => new Connection(selectedCluster.endpoint, config),
+    [selectedCluster, config]
   );
 
   return (

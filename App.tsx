@@ -1,44 +1,35 @@
 // Polyfills
-import "react-native-get-random-values";
-import { Buffer } from "buffer";
-global.Buffer = Buffer;
+import "./src/polyfills";
 
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { CLUSTER, ConnectionProvider } from "./src/ConnectionProvider";
-import { clusterApiUrl } from "@solana/web3.js";
-import { AuthorizationProvider } from "./src/AuthorizationProvider";
-import MainScreen from "./src/MainScreen";
-import { Header } from "./src/Header";
+import { ConnectionProvider } from "./src/utils/ConnectionProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { PaperProvider } from "react-native-paper";
 
-export const APP_IDENTITY = {
-  name: "Expo Starter Template",
-};
+import { AppNavigator } from "./src/navigators/AppNavigator";
+import { ClusterProvider } from "./src/components/cluster/cluster-data-access";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <ConnectionProvider
-      config={{ commitment: "processed" }}
-      endpoint={clusterApiUrl(CLUSTER)}
-    >
-      <AuthorizationProvider>
-        <SafeAreaView style={styles.shell}>
-          <Header />
-          <MainScreen />
-        </SafeAreaView>
-      </AuthorizationProvider>
-    </ConnectionProvider>
+    <QueryClientProvider client={queryClient}>
+      <ClusterProvider>
+        <ConnectionProvider config={{ commitment: "processed" }}>
+          <SafeAreaView style={styles.shell}>
+            <PaperProvider>
+              <AppNavigator />
+            </PaperProvider>
+          </SafeAreaView>
+        </ConnectionProvider>
+      </ClusterProvider>
+    </QueryClientProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   shell: {
     height: "100%",
   },
