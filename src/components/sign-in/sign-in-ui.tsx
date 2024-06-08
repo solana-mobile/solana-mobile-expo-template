@@ -47,7 +47,11 @@ export function SignInButton() {
         return;
       }
       setSignInInProgress(true);
-      await signIn();
+      await signIn({
+        domain: "yourdomain.com",
+        statement: "Sign into Expo Template App",
+        uri: "https://yourdomain.com",
+      });
     } catch (err: any) {
       alertAndLog(
         "Error during sign in",
