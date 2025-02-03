@@ -1,6 +1,6 @@
 {
   "name": "@solana-mobile/solana-mobile-expo-template",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
