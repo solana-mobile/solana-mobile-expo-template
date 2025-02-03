@@ -35,12 +35,14 @@ export function useMobileWallet() {
 
   const signAndSendTransaction = useCallback(
     async (
-      transaction: Transaction | VersionedTransaction
+      transaction: Transaction | VersionedTransaction,
+      minContextSlot: number,
     ): Promise<TransactionSignature> => {
       return await transact(async (wallet) => {
         await authorizeSession(wallet);
         const signatures = await wallet.signAndSendTransactions({
           transactions: [transaction],
+          minContextSlot,
         });
         return signatures[0];
       });

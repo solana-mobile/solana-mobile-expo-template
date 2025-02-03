@@ -79,7 +79,7 @@ export function useTransferSol({ address }: { address: PublicKey }) {
     mutationFn: async (input: { destination: PublicKey; amount: number }) => {
       let signature: TransactionSignature = "";
       try {
-        const { transaction, latestBlockhash } = await createTransaction({
+        const { transaction, latestBlockhash, minContextSlot } = await createTransaction({
           publicKey: address,
           destination: input.destination,
           amount: input.amount,
@@ -87,7 +87,7 @@ export function useTransferSol({ address }: { address: PublicKey }) {
         });
 
         // Send transaction and await for signature
-        signature = await wallet.signAndSendTransaction(transaction);
+        signature = await wallet.signAndSendTransaction(transaction, minContextSlot);
 
         // Send transaction and await for signature
         await connection.confirmTransaction(
@@ -179,9 +179,14 @@ async function createTransaction({
 }): Promise<{
   transaction: VersionedTransaction;
   latestBlockhash: { blockhash: string; lastValidBlockHeight: number };
+  minContextSlot: number
 }> {
-  // Get the latest blockhash to use in our transaction
-  const latestBlockhash = await connection.getLatestBlockhash();
+  // Get the latest blockhash and slot to use in our transaction
+  const {
+    context: {slot: minContextSlot},
+    value: latestBlockhash
+  } = await connection.getLatestBlockhashAndContext();
+
 
   // Create instructions to send, in this case a simple transfer
   const instructions = [
@@ -205,5 +210,6 @@ async function createTransaction({
   return {
     transaction,
     latestBlockhash,
+    minContextSlot,
   };
 }
