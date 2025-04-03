@@ -26,17 +26,17 @@ This template is a ready-to-go Android Expo dApp that offers:
 
 | Library               | Category          | Version | Description                                           |
 | --------------------- | ----------------- | ------- | ----------------------------------------------------- |
-| React Native          | Mobile Framework  | v0.73   | The best cross-platform mobile framework              |
-| Expo                  | SDK               | v50     | Allows (optional) Expo modules                        |
-| React                 | UI Framework      | v18     | The most popular UI framework in the world            |
-| Mobile Wallet Adapter | SDK               | v2.0    | Connect and request signing from mobile wallet apps   |
+| React Native          | Mobile Framework  | v0.76   | The best cross-platform mobile framework              |
+| Expo                  | SDK               | v52     | Allows (optional) Expo modules                        |
+| React                 | UI Framework      | v18.3   | The most popular UI framework in the world            |
+| Mobile Wallet Adapter | SDK               | v2.1    | Connect and request signing from mobile wallet apps   |
 | Solana web3.js        | SDK               | v1.78   | General Solana library for transactions and RPCs      |
-| spl-token             | SDK               | v0.41   | Library for building with Solana SPL tokens           |
-| React Native Paper    | Component Library | v18     | Production-ready components following Material Design |
+| spl-token             | SDK               | v0.4    | Library for building with Solana SPL tokens           |
+| React Native Paper    | Component Library | v5.12   | Production-ready components following Material Design |
 | React Navigation      | Navigation        | v6      | Performant and consistent navigation framework        |
 | React Query           | State management  | v5.24   | Async query management                                |
 | TypeScript            | Language          | v5      | Static typechecking                                   |
-| AsyncStorage          | Persistence       | v1      | State persistence                                     |
+| AsyncStorage          | Persistence       | v1.23   | State persistence                                     |
 
 ## Quick Start
 
